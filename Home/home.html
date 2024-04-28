@@ -28,10 +28,17 @@
      href="https://mauricio173.github.io/login"
      >LOGIN</a></li>
      -->
-     <li><a 
+     <li><a id="link_login" 
      href="../Login/index.html"
       >LOGIN</a></li>
-     
+          <script type="text/javascript" charset="utf-8">
+       const link_login = document.querySelector("#link_login");
+       const btn_close_menu = document.querySelector("#btn_close_menu");
+       link_login.addEventListener("click", ()=> {
+         btn_close_menu.click();
+         console.log("funcionou");
+       })
+     </script>
     </ul>
        <p class="elementoDatas"></p>
    </div>
