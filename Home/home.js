@@ -1,4 +1,14 @@
 // Variáveis 
+const menu_mobile_ul = document.querySelectorAll("#menu_mobile_ul li");
+menu_mobile_ul.forEach((item, index) => {
+  item.addEventListener("click", (event)=> {
+    const btn_close_menu = document.querySelector("#btn_close_menu");
+    btn_close_menu.click();
+    
+  });
+  
+});
+
 const diasSemana = new Array ("Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado");
  const mesesAno = new Array ("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro");
 // Funções 
