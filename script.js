@@ -1,8 +1,13 @@
 // Variáveis
-// const acode = 'backups.html';
-// const Url = acode.require('Url');
-// const dirname = Url.dirname('http://localhost:8158/backups.html');
-// console.log(dirname);
+const menu_mobile_ul = document.querySelectorAll("#menu_mobile_ul li");
+menu_mobile_ul.forEach((item, index) => {
+  item.addEventListener("click", (event)=> {
+    const btn_close_menu = document.querySelector("#btn_close_menu");
+    btn_close_menu.click();
+    
+  });
+  
+});
 // LocalStorage
 const TasksGet = JSON.parse(localStorage.getItem("Tasks"));
 let Tasks = TasksGet !== null ? TasksGet : [];
