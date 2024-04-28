@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="pt-BR">
+ <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tela de Registro</title>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <link rel="stylesheet" href="./styles/styles.css" />
+ </head>
+
+ <body>
+  <main class="card">
+   <section class="esquerda">
+     <a href='https://mauricioportfolio.vercel.app/'>
+    <img src="./Mookup/ic-logo.png" alt="Imagem logo" class="imagem__logo" />
+      
+    </a>
+    <h3 class="titulo__login">Cadastro</h3>
+    <span class="subtitulo">Preencha seus dados!</span>
+    <form>
+     <section class="caixa__input nome">
+      <label>Nome Completo</label>
+      <input type="text" placeholder="Digite seu nome completo" id="nome_usuario" />
+     </section>
+
+     <section class="caixa__input email">
+      <label>Email Completo</label>
+      <input type="email" placeholder="Digite seu email completo" id="email_usuario" />
+     </section>
+
+     <section class="caixa__input cep">
+      <label>CEP</label>
+      <input type="number" placeholder="Digite seu CEP completo" id="cep" />
+     </section>
+
+     <section class="caixa__input endereco">
+      <label> Endereço </label>
+      <input type="text" disabled="true" placeholder="Endereço" id="endereco" />
+     </section>
+
+     <section class="caixa__input bairro">
+      <label> Bairro </label>
+      <input type="text" disabled="true" placeholder="Bairro" id="bairro" />
+     </section>
+
+     <section class="caixa__input num_casa">
+      <label> Número da Casa </label>
+      <input type="text" placeholder="Digite o número de sua casa" id="num_casa" />
+     </section>
+
+     <section class="caixa__input complemento">
+      <label> Complemento </label>
+      <input type="text" placeholder="Digite seu  Complemento" id="complemento" />
+     </section>
+
+     <section class="caixa__input cidade">
+      <label> Cidade </label>
+      <input type="text" disabled="true" placeholder="Cidade" id="cidade" />
+     </section>
+
+     <section class="caixa__input estado">
+      <label> Estado </label>
+      <input type="text" disabled="true" placeholder="Estado" id="uf" />
+     </section>
+
+     <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+     <script>
+      $("#cep").blur(function () {
+       // Remove tudo o que não é número para fazer a pesquisa
+       var cep = this.value.replace(/[^0-9]/, "");
+
+       // Validação do CEP; caso o CEP não possua 8 números, então cancela
+       // a consulta
+       if (cep.length != 8) {
+        alert("Cep inválido!");
+        $("#endereco").val("");
+        $("#bairro").val("");
+        $("#cidade").val("");
+        $("#uf").val("");
+
+        return false;
+       }
+       // A url de pesquisa consiste no endereço do webservice + o cep que
+       // o usuário informou + o tipo de retorno desejado (entre "json",
+       // "jsonp", "xml", "piped" ou "querty")
+       var url = "https://viacep.com.br/ws/" + cep + "/json/";
+
+       // Faz a pesquisa do CEP, tratando o retorno com try/catch para que
+       // caso ocorra algum erro (o cep pode não existir, por exemplo) a
+       // usabilidade não seja afetada, assim o usuário pode continuar//
+       // preenchendo os campos normalmente
+       $.getJSON(url, function (dadosRetorno) {
+        try {
+         // Preenche os campos de acordo com o retorno da pesquisa
+         $("#endereco").val(dadosRetorno.logradouro);
+         $("#bairro").val(dadosRetorno.bairro);
+         $("#cidade").val(dadosRetorno.localidade);
+         $("#uf").val(dadosRetorno.uf);
+        } catch (ex) {}
+       });
+      });
+     </script>
+
+     <!--
+     <section class="caixa__input cep">
+      
+      
+
+     <label>CEP</label>
+      <input type="text" placeholder="Digite seu CEP completo" id="cep" />
+
+      <label> Endereço </label>
+      <input type="text" disabled="true" placeholder="Endereço" id="endereco" />
+      <label> Bairro </label>
+      <input type="text" disabled="true" placeholder="Bairro" id="bairro" />
+       <label> Número da Casa </label>
+      <input type="text" placeholder="Digite o número de sua casa" id="num_casa" />
+      <label> Complemento </label>
+      <input type="text" placeholder="Digite seu  Complemento" id="complemento" />
+      <label> Cidade </label>
+      <input type="text" disabled="true" placeholder="Cidade" id="cidade" />
+
+      <label> Estado </label>
+      <input type="text" disabled="true" placeholder="Estado" id="uf" />
+      <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+      <script>
+          $("#cep").blur(function () {
+        // Remove tudo o que não é número para fazer a pesquisa
+        var cep = this.value.replace(
+         /[^0-9]/,
+         ""
+        );
+
+        // Validação do CEP; caso o CEP não possua 8 números, então cancela
+        // a consulta
+        if (cep.length != 8) {
+         alert("Cep inválido!");
+         $("#endereco").val("");
+         $("#bairro").val("");
+         $("#cidade").val("");
+         $("#uf").val("");
+
+         return false;
+        }
+        // A url de pesquisa consiste no endereço do webservice + o cep que
+        // o usuário informou + o tipo de retorno desejado (entre "json",
+        // "jsonp", "xml", "piped" ou "querty")
+        var url =
+         "https://viacep.com.br/ws/" +
+         cep +
+         "/json/";
+
+        // Faz a pesquisa do CEP, tratando o retorno com try/catch para que
+        // caso ocorra algum erro (o cep pode não existir, por exemplo) a
+        // usabilidade não seja afetada, assim o usuário pode continuar//
+        // preenchendo os campos normalmente
+        $.getJSON(
+         url,
+         function (dadosRetorno) {
+          try {
+           // Preenche os campos de acordo com o retorno da pesquisa
+           $("#endereco").val(
+            dadosRetorno.logradouro
+           );
+           $("#bairro").val(
+            dadosRetorno.bairro
+           );
+           $("#cidade").val(
+            dadosRetorno.localidade
+           );
+           $("#uf").val(
+            dadosRetorno.uf
+           );
+          } catch (ex) {}
+         }
+        );
+       });
+      </script>
+      
+     </section>
+      -->
+     <!-- <script>
+
+       /*  $("#cep").on("keyup", function(event) {
+           if (event.keyCode == '13') {
+
+         console.log(cep.value);
+           }
+       });*/
+
+              $("#cep").blur(function (event) {
+               // Remove tudo o que não é número para fazer a pesquisa
+               var cep = this.value.replace(
+                /[^0-9]/,
+                ""
+               );
+       //console.log(cep);
+               // Validação do CEP; caso o CEP não possua 8 números, então cancela
+               // a consulta
+               if (cep.length != 8) {
+                alert("Cep inválido!");
+                $("#endereco").val("");
+                $("#bairro").val("");
+                $("#cidade").val("");
+                $("#uf").val("");
+
+                return false;
+               }
+               // A url de pesquisa consiste no endereço do webservice + o cep que
+               // o usuário informou + o tipo de retorno desejado (entre "json",
+               // "jsonp", "xml", "piped" ou "querty")
+               var url =
+                "https://viacep.com.br/ws/" +
+                cep +
+                "/json/";
+
+               // Faz a pesquisa do CEP, tratando o retorno com try/catch para que
+               // caso ocorra algum erro (o cep pode não existir, por exemplo) a
+               // usabilidade não seja afetada, assim o usuário pode continuar//
+               // preenchendo os campos normalmente
+
+              $.getJSON(
+                url,
+                function (dadosRetorno) {
+                 try {
+                  // Preenche os campos de acordo com o retorno da pesquisa
+                  $("#endereco").val(
+                   dadosRetorno.logradouro
+                  );
+                  $("#bairro").val(
+                   dadosRetorno.bairro
+                  );
+                  $("#cidade").val(
+                   dadosRetorno.localidade
+                  );
+                  $("#uf").val(
+                   dadosRetorno.uf
+                  );
+                 } catch (ex) {}
+                });
+              /* 
+               */
+
+
+                 $.getJSON(
+                url,
+                function (dadosRetorno) {
+                 try {
+                  // Preenche os campos de acordo com o retorno da pesquisa
+                  $("#endereco").val(
+                   dadosRetorno.logradouro
+                  );
+                  $("#bairro").val(
+                   dadosRetorno.bairro
+                  );
+                  $("#cidade").val(
+                   dadosRetorno.localidade
+                  );
+                  $("#uf").val(
+                   dadosRetorno.uf
+                  );
+                 } catch (ex) {}
+                }
+               );
+
+
+
+               }
+
+    
+      </script>-->
+
+     <section class="caixa__input senhas">
+      <label>Senha</label>
+      <input type="password" placeholder="Crie sua Senha" id="criar_senha" />
+     </section>
+     <span class="box_ocultar_senha controle_salvamento">
+      <input type="checkbox" onclick="mostrarOcultarSenhas()" id="mostrarrepitasenha" />
+      <label for="mostrarrepitasenha" id="Tms">
+       <span class="esqueceu_senha"> Mostrar Senha </span>
+      </label>
+      <script type="text/javascript" charset="utf-8">
+       function mostrarOcultarSenhas() {
+        var criar_senha = document.getElementById("criar_senha");
+        if (criar_senha.type === "password") {
+         criar_senha.type = "text";
+        } else {
+         criar_senha.type = "password";
+        }
+       }
+
+       function limpar() {
+        const inputs = document.querySelectorAll(".caixa__input input");
+        const usuario = document.querySelector("#usuario");
+        const senha = document.querySelector("#senha");
+        usuario.value = "";
+        senha.value = "";
+       }
+      </script>
+     </span>
+
+     <section class="caixa__input senhas" style="margin: 16px 0">
+      <label>Repita sua Senha</label>
+      <input type="password" placeholder="Repita sua Senha" id="repita_senha" />
+     </section>
+     <span class="box_ocultar_senha controle_salvamento">
+      <input type="checkbox" onclick="mostrarOcultarSenha()" id="mostrarsenha" />
+      <label for="mostrarsenha" id="tms">
+       <span class="esqueceu_senha"> Mostrar Senha </span>
+      </label>
+      <script type="text/javascript" charset="utf-8">
+       function mostrarOcultarSenha() {
+        var senha = document.getElementById("repita_senha");
+        if (senha.type === "password") {
+         senha.type = "text";
+        } else {
+         senha.type = "password";
+        }
+       }
+
+       function limpar() {
+        const inputs = document.querySelectorAll(".caixa__input input");
+        const nome_usuario = document.querySelector("#nome_usuario");
+        const senha = document.querySelector("#senha");
+        nome_usuario.value = "";
+        criar_senha.value = "";
+        repita_senha.value = "";
+       }
+      </script>
+     </span>
+    </form>
+    <section class="controle__salvamento">
+     <span class="esqueceu__senha"> Já possui conta? </span>
+    </section>
+    <section class="controle__acesso">
+     <button class="text-white" type="submit">
+      <a style="text-decoration: none; color: #fff" href="index.html"> Login </a>
+     </button>
+     <button class="botao__registrar">
+      <span class="botao__registrar--texto">Cadastrar</span>
+     </button>
+     <script>
+      const botao__registrar = document.querySelector(".botao__registrar");
+      const criar_senha = document.querySelector("#criar_senha");
+      const repita_senha = document.querySelector("#repita_senha");
+      function functionName() {
+       if (criar_senha.value != repita_senha.value) {
+        alert("A senha: " + repita_senha.value + " não confere!");
+       }
+      }
+      botao__registrar.addEventListener("click", functionName);
+     </script>
+    </section>
+    <section class="separador">
+     <span></span>
+     <span>ou faça login social</span>
+     <span></span>
+    </section>
+    <section class="controle__login_social">
+     <a href="#">
+      <img src="./Mookup/ic-google.png" alt="Logo Google" />
+      Login com Google
+     </a>
+
+     <!--<div class="g-signin2" data-onsuccess="onSignIn">gff</div>
+         
+<button onclick="onLoad()">Login com Google</button>
+<br />
+<button onclick="signInWithGoogle()">Login Google</button>
+
+
+
+<script>
+  // Função para realizar o login com o Google
+  function signInWithGoogle() {
+    var auth2 = gapi.auth2.getAuthInstance(); // Obtenha a instância de autenticação
+    
+    // Realize o login
+    auth2.signIn().then(function(googleUser) {
+      onSignIn(googleUser); // Chame sua função de tratamento de login bem-sucedido
+    }).catch(function(error) {
+      console.error("Erro no login com o Google: " + error);
+    });
+  }
+  
+  // Função chamada quando o login é bem-sucedido
+  function onSignIn(googleUser) {
+    // Obtenha as informações do perfil do usuário
+    var profile = googleUser.getBasicProfile();
+    
+    // Exemplo: Exibir nome e email do usuário
+    console.log('Nome: ' + profile.getName());
+    console.log('Email: ' + profile.getEmail());
+    
+    // Aqui você pode enviar o token para o servidor para verificação e processamento adicional
+    //var id_token = googleUser.getAuthResponse().id_token;
+    // Enviar o id_token para o seu servidor para verificação
+  }
+</script>-->
+
+     <a href="#">
+      <img src="./Mookup/ic-facebook.png" alt="Logo Facebook" />
+      Login com Facebook
+     </a>
+    </section>
+   </section>
+   <section class="direita">
+    <div class="background__imagem">
+     <div class="detalhe__vidro">
+      <div class="detalhe__vidro--interno">
+       <span>Curta e Compartilhe</span>
+      </div>
+     </div>
+     <img src="./Mookup/ic-background-direita.svg" alt="Imagem fundo" />
+    </div>
+   </section>
+  </main>
+
+  <!--<footer>
+      <button onclick="resolucao()" class="btn__res">Resolução</button>
+      <p class="resolucao2"></p>
+      <script type="text/javascript" charset="utf-8">
+          function resolucao(){
+            const resolucao2 = document.querySelector(".resolucao2");
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            resolucao2.innerHTML = `
+              <p>
+                ${viewportWidth}
+              </p>
+              <p> 
+                ${viewportHeight}
+              </p>
+            
+            `;
+            console.log(`Resolução da janela de visualização: ${viewportWidth}x${viewportHeight}`);
+          }
+          /*resolucao();*/
+        </script>
+    </footer>-->
+  <script src="./script/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/eruda" onload="eruda.init()"></script>
+  <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+  <!-- No final do seu arquivo HTML, antes do fechamento do body -->
+  <!--<script>
+  function onLoad() {
+    gapi.load('auth2', function() {
+      gapi.auth2.init({
+        client_id: 'SEU_ID_DO_CLIENTE_AQUI', // Substitua pelo seu ID do cliente
+      }).then(function() {
+        // Aqui você pode acessar o objeto gapi.auth2 com segurança
+        var auth2 = gapi.auth2.getAuthInstance();
+        
+        // Agora você pode usar o métodos signIn() corretamente
+        auth2.signIn().then(function(googleUser) {
+          onSignIn(googleUser);
+        }).catch(function(error) {
+          console.error("Erro no login com o Google: " + error);
+        });
+      });
+    });
+  }
+</script>-->
+  <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+ </body>
+</html>
