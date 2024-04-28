@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="pt-BR">
+ <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tela de Login</title>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="./src/index.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./src/App.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="./styles/styles.css" />
+ </head>
+
+ <body>
+  <main class="card">
+   <section class="esquerda">
+    <a href='https://mauricioportfolio.vercel.app/'>
+    <img src="./Mookup/ic-logo.png" alt="Imagem logo" class="imagem__logo" />
+      
+    </a>
+       
+    <!--<a href='../../../Novo Portfólio/index.html'>../Nova pasta/</a>
+    http://localhost:8158/index.html
+    <a href='../../../Portfolio/NovoPortfolio/index.html'>../Nova pasta/</a>
+    -->
+    <label style="display: none;" for="logotipo">
+      
+    </label>
+    <h3 class="titulo__login">Login</h3>
+    <span class="subtitulo">Preencha seus dados!</span>
+    <form>
+     <section class="caixa__input">
+      <label>Usuário</label>
+      <input type="text" placeholder="Usuário" id="usuario" />
+     </section>
+     <section class="caixa__input">
+      <label>Senha</label>
+      <input type="password" placeholder="Senha" id="senha" />
+     </section>
+     <span class="box_ocultar_senha controle_salvamento">
+      <input type="checkbox" onclick="mostrarOcultarSenha()" id="mostrarsenha" />
+      <label for="mostrarsenha" id="tms">
+       <span class="esqueceu_senha"> Mostrar Senha </span>
+      </label>
+      <script type="text/javascript" charset="utf-8">
+       function mostrarOcultarSenha() {
+        var senha = document.getElementById("senha");
+        if (senha.type === "password") {
+         senha.type = "text";
+        } else {
+         senha.type = "password";
+        }
+       }
+
+       function limpar() {
+        const inputs = document.querySelectorAll(".caixa__input input");
+        const usuario = document.querySelector("#usuario");
+        const senha = document.querySelector("#senha");
+        usuario.value = "";
+        senha.value = "";
+       }
+      </script>
+     </span>
+    </form>
+    <section class="controle__salvamento">
+     <span class="esqueceu__senha"> Esqueceu sua senha? </span>
+    </section>
+    <section class="controle__acesso">
+     <button type="submit">Login</button>
+     <button class="botao__registrar">
+      <span class="botao__registrar--texto"> </span>
+      <a class="botao__registrar--texto" style="text-decoration: none" href="register.html"> Registrar </a>
+     </button>
+    </section>
+    <section class="separador">
+     <span></span>
+     <span>ou faça login social</span>
+     <span></span>
+    </section>
+    <section class="controle__login_social">
+     <a href="#">
+      <img src="./Mookup/ic-google.png" alt="Logo Google" />
+      Login com Google
+     </a>
+<noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+     <!--<div class="g-signin2" data-onsuccess="onSignIn">gff</div>
+         
+<button onclick="onLoad()">Login com Google</button>
+<br />
+<button onclick="signInWithGoogle()">Login Google</button>
+
+
+
+<script>
+  // Função para realizar o login com o Google
+  function signInWithGoogle() {
+    var auth2 = gapi.auth2.getAuthInstance(); // Obtenha a instância de autenticação
+    
+    // Realize o login
+    auth2.signIn().then(function(googleUser) {
+      onSignIn(googleUser); // Chame sua função de tratamento de login bem-sucedido
+    }).catch(function(error) {
+      console.error("Erro no login com o Google: " + error);
+    });
+  }
+  
+  // Função chamada quando o login é bem-sucedido
+  function onSignIn(googleUser) {
+    // Obtenha as informações do perfil do usuário
+    var profile = googleUser.getBasicProfile();
+    
+    // Exemplo: Exibir nome e email do usuário
+    console.log('Nome: ' + profile.getName());
+    console.log('Email: ' + profile.getEmail());
+    
+    // Aqui você pode enviar o token para o servidor para verificação e processamento adicional
+    //var id_token = googleUser.getAuthResponse().id_token;
+    // Enviar o id_token para o seu servidor para verificação
+  }
+</script>-->
+
+     <a href="#">
+      <img src="./Mookup/ic-facebook.png" alt="Logo Facebook" />
+      Login com Facebook
+     </a>
+    </section>
+   </section>
+   <section class="direita">
+    <div class="background__imagem">
+     <div class="detalhe__vidro">
+      <div class="detalhe__vidro--interno">
+       <span>Curta e Compartilhe</span>
+      </div>
+     </div>
+     <img src="./Mookup/ic-background-direita.svg" alt="Imagem fundo" />
+    </div>
+   </section>
+  </main>
+
+  <!--<footer>
+      <button onclick="resolucao()" class="btn__res">Resolução</button>
+      <p class="resolucao2"></p>
+      <script type="text/javascript" charset="utf-8">
+          function resolucao(){
+            const resolucao2 = document.querySelector(".resolucao2");
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            resolucao2.innerHTML = `
+              <p>
+                ${viewportWidth}
+              </p>
+              <p> 
+                ${viewportHeight}
+              </p>
+            
+            `;
+            console.log(`Resolução da janela de visualização: ${viewportWidth}x${viewportHeight}`);
+          }
+          /*resolucao();*/
+        </script>
+    </footer>-->
+  <script src="./script/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/eruda" onload="eruda.init()"></script>
+  <!-- No final do seu arquivo HTML, antes do fechamento do body -->
+  <!--<script>
+  function onLoad() {
+    gapi.load('auth2', function() {
+      gapi.auth2.init({
+        client_id: 'SEU_ID_DO_CLIENTE_AQUI', // Substitua pelo seu ID do cliente
+      }).then(function() {
+        // Aqui você pode acessar o objeto gapi.auth2 com segurança
+        var auth2 = gapi.auth2.getAuthInstance();
+        
+        // Agora você pode usar o métodos signIn() corretamente
+        auth2.signIn().then(function(googleUser) {
+          onSignIn(googleUser);
+        }).catch(function(error) {
+          console.error("Erro no login com o Google: " + error);
+        });
+      });
+    });
+  }
+</script>-->
+  <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+ </body>
+</html>
